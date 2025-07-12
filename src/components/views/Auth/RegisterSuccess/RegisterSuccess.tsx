@@ -1,0 +1,45 @@
+import { Button } from "@nextui-org/react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
+const RegisterSuccess = () => {
+  const router = useRouter();
+
+  return (
+    <div className="flex flex-col">
+      <div className="flex flex-col items-center justify-center gap-10">
+        <Image
+          src="/images/general/logo.svg"
+          alt="Logo"
+          width={130}
+          height={130}
+        />
+        <Image
+          src="/images/illustration/email-send.svg"
+          alt="success"
+          width={350}
+          height={350}
+        />
+        <div className="flex flex-col items-center justify-center gap-2 text-center">
+          <h2 className="text-3xl font-bold text-danger-500">
+            Create Account Success
+          </h2>
+          <p className="text-xl font-bold text-default-500">
+            Check your email for account activation
+          </p>
+          <Button
+            className="mt-4 w-fit"
+            variant="bordered"
+            color="danger"
+            type="button"
+            onClick={() => router.push("/")}
+          >
+            Back To Home
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default RegisterSuccess;
