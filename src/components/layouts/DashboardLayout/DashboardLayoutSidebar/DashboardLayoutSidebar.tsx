@@ -5,6 +5,7 @@ import { CiLogout } from "react-icons/ci";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { cn } from "@/utils/cn";
+import Link from "next/link";
 
 interface SidebarItems {
   key: string;
@@ -33,14 +34,14 @@ const DashboardLayoutSidebar: FC<DashboardLayoutSidebarProps> = ({
     >
       <div>
         <div className="flex justify-center">
-          <Image
-            src="/images/general/logo.svg"
-            alt="Logo"
-            width={180}
-            height={60}
-            className="mb-6 w-32 cursor-pointer"
-            onClick={() => router.push("/")}
-          />
+          <Link href={"/"} className="mb-6 w-32 cursor-pointer">
+            <Image
+              src="/images/general/logo.svg"
+              alt="Logo"
+              width={180}
+              height={60}
+            />
+          </Link>
         </div>
         <Listbox
           items={sidebarItems}
@@ -51,7 +52,9 @@ const DashboardLayoutSidebar: FC<DashboardLayoutSidebarProps> = ({
             <ListboxItem
               key={item.key}
               className={cn("my-1 h-12 text-2xl", {
-                "bg-danger-500 text-white": item.href === router.pathname,
+                "bg-danger-500 text-white": router.pathname.startsWith(
+                  item.href,
+                ),
               })}
               startContent={item.icon}
               textValue={item.label}
