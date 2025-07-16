@@ -3,7 +3,7 @@ import RegisterSuccess from "@/components/views/Auth/RegisterSuccess";
 
 const RegisterSuccessPage = () => {
   return (
-    <AuthLayout title="Acara | Register Success">
+    <AuthLayout title="Tixin | Register Success">
       <RegisterSuccess />
     </AuthLayout>
   );

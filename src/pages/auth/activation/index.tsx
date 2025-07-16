@@ -8,7 +8,7 @@ export interface PropTypes {
 
 const ActivationPage = (props: PropTypes) => {
   return (
-    <AuthLayout title="Acara | Activation Account">
+    <AuthLayout title="Tixin | Activation Account">
       <Activation {...props} />
     </AuthLayout>
   );

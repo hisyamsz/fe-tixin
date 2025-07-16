@@ -36,7 +36,7 @@ const DashboardLayoutSidebar: FC<DashboardLayoutSidebarProps> = ({
         <div className="flex justify-center">
           <Link href={"/"} className="mb-6 w-32 cursor-pointer">
             <Image
-              src="/images/general/logo.svg"
+              src="/images/general/Tixin-Logos.svg"
               alt="Logo"
               width={180}
               height={60}
@@ -52,7 +52,7 @@ const DashboardLayoutSidebar: FC<DashboardLayoutSidebarProps> = ({
             <ListboxItem
               key={item.key}
               className={cn("my-1 h-12 text-2xl", {
-                "bg-danger-500 text-white": router.pathname.startsWith(
+                "bg-indigo-500 text-white": router.pathname.startsWith(
                   item.href,
                 ),
               })}
@@ -68,11 +68,10 @@ const DashboardLayoutSidebar: FC<DashboardLayoutSidebarProps> = ({
       </div>
       <div className="flex items-center p-1">
         <Button
-          color="danger"
           fullWidth
           variant="light"
           size="lg"
-          className="flex justify-start rounded-lg px-2 py-1.5"
+          className="flex justify-start rounded-lg px-2 py-1.5 text-indigo-500"
           onClick={() => signOut()}
         >
           <CiLogout />

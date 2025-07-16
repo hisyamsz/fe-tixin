@@ -18,36 +18,21 @@ const Login = () => {
   } = useLogin();
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-10 lg:flex-row lg:gap-20">
-      <div className="flex w-full flex-col items-center justify-center gap-10 lg:w-1/3">
-        <Image
-          src="/images/general/logo.svg"
-          alt="Logo"
-          width={180}
-          height={180}
-        />
-        <Image
-          src="/images/illustration/login.svg"
-          alt="Login"
-          width={1024}
-          height={1024}
-          className="w-2/3 lg:w-full"
-        />
-      </div>
+    <div className="flex w-full flex-col items-center justify-center gap-16 lg:flex-row lg:gap-20">
       <Card>
         <CardBody className="p-8">
-          <h2 className="mb-2 text-2xl font-bold text-danger-500">Login</h2>
+          <h2 className="mb-2 text-2xl font-bold text-indigo-500">Login</h2>
           <p className="mb-4 text-sm">
             Don&apos;t have any account?{" "}
             <Link
               href="/auth/register"
-              className="font-semibold text-danger-400"
+              className="font-semibold text-indigo-400"
             >
               Register here
             </Link>
           </p>
           {errors.root && (
-            <p className="mb-2 font-medium text-danger-600">
+            <p className="mb-2 font-medium text-indigo-600">
               {errors?.root?.message}
             </p>
           )}
@@ -104,12 +89,31 @@ const Login = () => {
               )}
             />
 
-            <Button type="submit" color="danger" size="lg">
+            <Button
+              type="submit"
+              size="lg"
+              className="bg-indigo-500 text-white"
+            >
               {isPendingLogin ? <Spinner color="white" size="sm" /> : "Login"}
             </Button>
           </form>
         </CardBody>
       </Card>
+      <div className="flex w-full flex-col items-center justify-center gap-10 lg:w-1/3">
+        <Image
+          src="/images/general/Tixin-Logos.svg"
+          alt="Logo"
+          width={180}
+          height={180}
+        />
+        <Image
+          src="/images/illustration/auth.svg"
+          alt="Login"
+          width={1024}
+          height={1024}
+          className="w-2/3 lg:w-full"
+        />
+      </div>
     </div>
   );
 };
