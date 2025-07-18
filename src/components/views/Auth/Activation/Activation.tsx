@@ -22,7 +22,7 @@ const Activation = (props: PropType) => {
         <Image
           src={
             status === "success"
-              ? "/images/illustration/authentication.svg"
+              ? "/images/illustration/done.svg"
               : "/images/illustration/denied.svg"
           }
           alt="success"
@@ -42,9 +42,13 @@ const Activation = (props: PropType) => {
             className="mt-4 w-fit border-indigo-500 text-indigo-500"
             variant="bordered"
             type="button"
-            onClick={() => router.push("/")}
+            onClick={() =>
+              status === "success"
+                ? router.push("/auth/login")
+                : router.push("/")
+            }
           >
-            Back To Home
+            {status === "success" ? "Proceed to login" : "Back To Home"}
           </Button>
         </div>
       </div>

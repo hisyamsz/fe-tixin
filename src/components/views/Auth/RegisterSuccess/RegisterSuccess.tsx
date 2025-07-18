@@ -15,10 +15,10 @@ const RegisterSuccess = () => {
           height={130}
         />
         <Image
-          src="/images/illustration/email-send.svg"
+          src="/images/illustration/authentication.svg"
           alt="success"
-          width={350}
-          height={350}
+          width={250}
+          height={250}
         />
         <div className="flex flex-col items-center justify-center gap-2 text-center">
           <h2 className="text-3xl font-bold text-indigo-500">

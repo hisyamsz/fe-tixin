@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
-  if (pathname === "/auth/login" || pathname === "/auth/register") {
+  if (pathname.startsWith("/auth")) {
     if (token) {
       return NextResponse.redirect(new URL("/", request.url));
     }

@@ -32,7 +32,7 @@ const Login = () => {
             </Link>
           </p>
           {errors.root && (
-            <p className="mb-2 font-medium text-indigo-600">
+            <p className="mb-2 text-sm font-medium text-red-600">
               {errors?.root?.message}
             </p>
           )}

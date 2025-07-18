@@ -39,7 +39,7 @@ const useLogin = () => {
     });
 
     if (result?.error && result.status === 401) {
-      throw new Error("Login Failed");
+      throw new Error("Incorrect email, username, or password");
     }
 
     return result;
