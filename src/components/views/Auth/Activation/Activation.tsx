@@ -42,7 +42,7 @@ const Activation = (props: PropType) => {
             className="mt-4 w-fit border-indigo-500 text-indigo-500"
             variant="bordered"
             type="button"
-            onClick={() =>
+            onPress={() =>
               status === "success"
                 ? router.push("/auth/login")
                 : router.push("/")
