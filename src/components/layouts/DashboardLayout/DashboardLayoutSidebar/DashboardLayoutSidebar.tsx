@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, JSX } from "react";
 import { Button, Listbox, ListboxItem } from "@nextui-org/react";
 import { signOut } from "next-auth/react";
 import { CiLogout } from "react-icons/ci";
@@ -60,6 +60,8 @@ const DashboardLayoutSidebar: FC<DashboardLayoutSidebarProps> = ({
               textValue={item.label}
               aria-labelledby={item.label}
               aria-describedby={item.label}
+              as={Link}
+              href={item.href}
             >
               <p className="text-small">{item.label}</p>
             </ListboxItem>
@@ -72,7 +74,7 @@ const DashboardLayoutSidebar: FC<DashboardLayoutSidebarProps> = ({
           variant="light"
           size="lg"
           className="flex justify-start rounded-lg px-2 py-1.5 text-indigo-500"
-          onClick={() => signOut()}
+          onPress={() => signOut()}
         >
           <CiLogout />
           Logout
