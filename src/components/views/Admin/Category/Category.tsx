@@ -8,25 +8,45 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FC, Key, ReactNode, useCallback } from "react";
+import { FC, Key, ReactNode, useCallback, useEffect } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { COLUMN_LIST_CATEGORIES } from "./Category.constants";
-import { LIMIT_LISTS } from "@/constants/limit.constants";
+import useCategory from "./useCategory";
+import InputFile from "@/components/ui/InputFile";
 
 interface CategoryProps {}
 
 const Category: FC<CategoryProps> = ({}) => {
-  const { push } = useRouter();
+  const { push, isReady, query } = useRouter();
+
+  const {
+    currentLimit,
+    currentPage,
+    dataCategory,
+    handleChangeLimit,
+    handleChangePage,
+    handleSearch,
+    handleClearSearch,
+    isLoadingCategory,
+    isRefetchingCategory,
+    setURL,
+  } = useCategory();
+
+  useEffect(() => {
+    if (isReady) {
+      setURL();
+    }
+  }, [isReady]);
 
   const renderCell = useCallback(
     (category: Record<string, unknown>, columnKey: Key) => {
       const cellValue = category[columnKey as keyof typeof category];
 
       switch (columnKey) {
-        case "icon":
-          return (
-            <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
-          );
+        // case "icon":
+        //   return (
+        //     <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
+        //   );
         case "actions":
           return (
             <Dropdown>
@@ -60,29 +80,25 @@ const Category: FC<CategoryProps> = ({}) => {
 
   return (
     <section>
-      <DataTable
-        buttonTopContentLabel="Create Category"
-        columns={COLUMN_LIST_CATEGORIES}
-        currentPage={1}
-        data={[
-          {
-            _id: 123,
-            name: "Category 1",
-            description: "Category 1 Description",
-            icon: "/images/general/Tixin-Logos.svg",
-          },
-        ]}
-        emptyContent="Category is empty"
-        isLoading={false}
-        limit={LIMIT_LISTS[0].label}
-        onChangeLimit={() => {}}
-        onChangePage={() => {}}
-        onChangeSearch={() => {}}
-        onClearSearch={() => {}}
-        onClickButtonTopContent={() => {}}
-        renderCell={renderCell}
-        totalPages={2}
-      />
+      {Object.keys(query).length > 0 && (
+        <DataTable
+          buttonTopContentLabel="Create Category"
+          columns={COLUMN_LIST_CATEGORIES}
+          currentPage={Number(currentPage)}
+          data={dataCategory?.data || []}
+          emptyContent="Category is empty"
+          isLoading={isLoadingCategory || isRefetchingCategory}
+          limit={String(currentLimit)}
+          onChangeLimit={handleChangeLimit}
+          onChangePage={handleChangePage}
+          onChangeSearch={handleSearch}
+          onClearSearch={handleClearSearch}
+          onClickButtonTopContent={() => {}}
+          renderCell={renderCell}
+          totalPages={dataCategory?.pagination.totalPage}
+        />
+      )}
+      <InputFile name="input" isDropable />
     </section>
   );
 };

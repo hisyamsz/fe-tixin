@@ -1,4 +1,4 @@
-import { LIMIT_LISTS } from "@/constants/limit.constants";
+import { LIMIT_LISTS } from "@/constants/list.constants";
 import { cn } from "@/utils/cn";
 import {
   Button,
@@ -52,7 +52,7 @@ const DataTable: FC<DataTableProps> = ({
 }) => {
   const TopContent = useMemo(() => {
     return (
-      <div className="mb-1 flex flex-col-reverse justify-between gap-y-6 lg:flex-row lg:items-center">
+      <div className="mb-2 flex flex-col-reverse justify-between gap-y-4 lg:flex-row lg:items-center">
         <Input
           isClearable
           variant="flat"
@@ -60,11 +60,11 @@ const DataTable: FC<DataTableProps> = ({
           startContent={<CiSearch />}
           onClear={onClearSearch}
           onChange={onChangeSearch}
-          className="w-full lg:max-w-[25%]"
+          className="w-full lg:max-w-64"
         />
         {buttonTopContentLabel && (
           <Button
-            className="bg-indigo-500 text-white"
+            className="bg-primary text-white"
             onPress={onClickButtonTopContent}
           >
             {buttonTopContentLabel}
@@ -81,7 +81,7 @@ const DataTable: FC<DataTableProps> = ({
 
   const BottomContent = useMemo(() => {
     return (
-      <div className="flex items-center justify-center px-4 py-2 lg:justify-between">
+      <div className="flex items-center justify-center p-2 lg:justify-between">
         <Select
           className="hidden max-w-32 lg:block"
           size="md"
@@ -89,6 +89,7 @@ const DataTable: FC<DataTableProps> = ({
           selectionMode="single"
           onChange={onChangeLimit}
           startContent={<p className="text-sm">Show:</p>}
+          disallowEmptySelection
         >
           {LIMIT_LISTS.map(({ value, label }) => (
             <SelectItem key={value} value={value}>
@@ -96,13 +97,16 @@ const DataTable: FC<DataTableProps> = ({
             </SelectItem>
           ))}
         </Select>
-        <Pagination
-          isCompact
-          showControls
-          total={totalPages}
-          page={currentPage}
-          onChange={onChangePage}
-        />
+        {totalPages > 1 && (
+          <Pagination
+            loop
+            isCompact
+            showControls
+            total={totalPages}
+            page={currentPage}
+            onChange={onChangePage}
+          />
+        )}
       </div>
     );
   }, [limit, currentPage, totalPages, onChangeLimit, onChangePage]);
@@ -131,7 +135,7 @@ const DataTable: FC<DataTableProps> = ({
         items={data}
         loadingContent={
           <div className="flex h-full w-full items-center justify-center bg-foreground-400/30 backdrop-blur-sm">
-            <Spinner className="text-indigo-500" />
+            <Spinner className="text-primary" />
           </div>
         }
       >

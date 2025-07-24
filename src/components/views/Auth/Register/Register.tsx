@@ -21,7 +21,7 @@ const Register = () => {
     <div className="flex w-full flex-col-reverse items-center justify-center gap-16 lg:flex-row lg:gap-20">
       <Card>
         <CardBody className="p-8">
-          <h2 className="mb-2 text-2xl font-bold text-indigo-500">
+          <h2 className="mb-2 text-2xl font-bold text-primary">
             Create Account
           </h2>
           <p className="mb-4 text-sm">
@@ -48,7 +48,6 @@ const Register = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  isRequired
                   type="text"
                   label="Fullname"
                   variant="bordered"
@@ -64,7 +63,6 @@ const Register = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  isRequired
                   type="text"
                   label="Username"
                   variant="bordered"
@@ -80,7 +78,6 @@ const Register = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  isRequired
                   type="email"
                   label="Email"
                   variant="bordered"
@@ -96,7 +93,6 @@ const Register = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  isRequired
                   variant="bordered"
                   label="Password"
                   autoComplete="off"
@@ -125,7 +121,6 @@ const Register = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  isRequired
                   variant="bordered"
                   label="Confirm Password"
                   autoComplete="off"
@@ -152,7 +147,7 @@ const Register = () => {
             <Button
               type="submit"
               size="lg"
-              className="bg-indigo-500 text-white disabled:opacity-80"
+              className="bg-primary text-white disabled:opacity-80"
               disabled={isPendingRegister}
             >
               {isPendingRegister ? (

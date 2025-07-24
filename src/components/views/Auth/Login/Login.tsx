@@ -1,10 +1,10 @@
 import { Button, Card, CardBody, Input, Spinner } from "@nextui-org/react";
-import Image from "next/image";
-import Link from "next/link";
 import useLogin from "./useLogin";
-import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { Controller } from "react-hook-form";
+import Link from "next/link";
 import { cn } from "@/utils/cn";
+import { Controller } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import Image from "next/image";
 
 const Login = () => {
   const {
@@ -21,7 +21,7 @@ const Login = () => {
     <div className="flex w-full flex-col-reverse items-center justify-center gap-16 lg:flex-row lg:gap-20">
       <Card>
         <CardBody className="p-8">
-          <h2 className="mb-2 text-2xl font-bold text-indigo-500">Login</h2>
+          <h2 className="mb-2 text-2xl font-bold text-primary">Login</h2>
           <p className="mb-4 text-sm">
             Don&apos;t have any account?{" "}
             <Link
@@ -49,7 +49,6 @@ const Login = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  isRequired
                   type="text"
                   label="Email / Username"
                   variant="bordered"
@@ -65,7 +64,6 @@ const Login = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  isRequired
                   variant="bordered"
                   label="Password"
                   autoComplete="off"
@@ -92,7 +90,7 @@ const Login = () => {
             <Button
               type="submit"
               size="lg"
-              className="bg-indigo-500 text-white disabled:opacity-80"
+              className="bg-primary text-white disabled:opacity-80"
               disabled={isPendingLogin}
             >
               {isPendingLogin ? <Spinner color="white" size="sm" /> : "Login"}

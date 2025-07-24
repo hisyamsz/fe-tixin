@@ -30,7 +30,7 @@ const Activation = (props: PropType) => {
           height={250}
         />
         <div className="flex flex-col items-center justify-center gap-2 text-center">
-          <h2 className="text-3xl font-bold text-indigo-500">
+          <h2 className="text-3xl font-bold text-primary">
             {status === "success" ? "Activation Success" : " Activation Failed"}
           </h2>
           <p className="text-xl font-bold text-default-500">
@@ -39,7 +39,7 @@ const Activation = (props: PropType) => {
               : "Confirmation code is invalid"}
           </p>
           <Button
-            className="mt-4 w-fit border-indigo-500 text-indigo-500"
+            className="mt-4 w-fit border-primary text-primary"
             variant="bordered"
             type="button"
             onPress={() =>
