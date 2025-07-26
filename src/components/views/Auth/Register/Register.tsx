@@ -78,7 +78,7 @@ const Register = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  type="email"
+                  type="text"
                   label="Email"
                   variant="bordered"
                   autoComplete="off"
