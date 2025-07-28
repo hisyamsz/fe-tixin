@@ -3,9 +3,10 @@ import useDebounce from "@/hooks/useDebounce";
 import categoryServices from "@/services/category.service";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 
 const useCategory = () => {
+  const [selectedId, setSelectedId] = useState<string>("");
   const router = useRouter();
   const debounce = useDebounce();
 
@@ -103,6 +104,9 @@ const useCategory = () => {
     handleClearSearch,
 
     setURL,
+
+    selectedId,
+    setSelectedId,
   };
 };
 

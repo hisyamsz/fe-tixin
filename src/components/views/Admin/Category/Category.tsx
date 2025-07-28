@@ -14,6 +14,7 @@ import { CiMenuKebab } from "react-icons/ci";
 import { COLUMN_LIST_CATEGORIES } from "./Category.constants";
 import useCategory from "./useCategory";
 import AddCategoryModal from "./AddCategoryModal";
+import DeleteCategoryModal from "./DeleteCategoryModal";
 
 interface CategoryProps {}
 
@@ -32,9 +33,12 @@ const Category: FC<CategoryProps> = ({}) => {
     isRefetchingCategory,
     refetchCategory,
     setURL,
+    selectedId,
+    setSelectedId,
   } = useCategory();
 
-  const disclosuerAddCategoryModal = useDisclosure();
+  const disclosureAddCategoryModal = useDisclosure();
+  const disclosureDeleteCategoryModal = useDisclosure();
 
   useEffect(() => {
     if (isReady) {
@@ -69,6 +73,10 @@ const Category: FC<CategoryProps> = ({}) => {
                 <DropdownItem
                   key="delete-category-button"
                   className="text-danger-500"
+                  onPress={() => {
+                    setSelectedId(`${category._id}`);
+                    disclosureDeleteCategoryModal.onOpen();
+                  }}
                 >
                   Delete
                 </DropdownItem>
@@ -97,13 +105,19 @@ const Category: FC<CategoryProps> = ({}) => {
           onChangePage={handleChangePage}
           onChangeSearch={handleSearch}
           onClearSearch={handleClearSearch}
-          onClickButtonTopContent={disclosuerAddCategoryModal.onOpen}
+          onClickButtonTopContent={disclosureAddCategoryModal.onOpen}
           renderCell={renderCell}
           totalPages={dataCategory?.pagination.totalPage}
         />
       )}
       <AddCategoryModal
-        {...disclosuerAddCategoryModal}
+        {...disclosureAddCategoryModal}
+        refetchCategory={refetchCategory}
+      />
+      <DeleteCategoryModal
+        {...disclosureDeleteCategoryModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
         refetchCategory={refetchCategory}
       />
     </section>
