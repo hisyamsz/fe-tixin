@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 import { Button, Spinner } from "@nextui-org/react";
 import Image from "next/image";
-import { ChangeEvent, FC, useEffect, useId, useRef } from "react";
+import { ChangeEvent, FC, ReactNode, useEffect, useId, useRef } from "react";
 import { CiSaveUp2, CiTrash } from "react-icons/ci";
 
 interface InputFileProps {
@@ -11,6 +11,7 @@ interface InputFileProps {
   isDropable?: boolean;
   isInvalid?: boolean;
   isUploading?: boolean;
+  label?: ReactNode;
   name: string;
   onUpload?: (files: FileList) => void;
   onDelete?: () => void;
@@ -24,6 +25,7 @@ const InputFile: FC<InputFileProps> = ({
   isDropable = false,
   isInvalid,
   isUploading,
+  label,
   name,
   onUpload,
   onDelete,
@@ -68,6 +70,7 @@ const InputFile: FC<InputFileProps> = ({
 
   return (
     <div>
+      {label}
       <label
         ref={drop}
         htmlFor={`dropzone-file-${dropzoneId}`}

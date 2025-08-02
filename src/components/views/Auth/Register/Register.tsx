@@ -18,7 +18,7 @@ const Register = () => {
   } = useRegister();
 
   return (
-    <div className="flex w-full flex-col-reverse items-center justify-center gap-16 lg:flex-row lg:gap-20">
+    <div className="flex w-full flex-col items-center justify-center gap-16 lg:flex-row lg:gap-20">
       <Card>
         <CardBody className="p-8">
           <h2 className="mb-2 text-2xl font-bold text-primary">
