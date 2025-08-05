@@ -1,4 +1,5 @@
 import { LIMIT_LISTS } from "@/constants/list.constants";
+import useChangeUrl from "@/hooks/useChangeUrl";
 import { cn } from "@/utils/cn";
 import {
   Button,
@@ -20,15 +21,9 @@ import { CiSearch } from "react-icons/ci";
 interface DataTableProps {
   buttonTopContentLabel?: string;
   columns: Record<string, unknown>[];
-  currentPage: number;
   data: Record<string, unknown>[];
   emptyContent: string;
   isLoading: boolean;
-  limit: string;
-  onChangeLimit: (e: ChangeEvent<HTMLSelectElement>) => void;
-  onChangePage: (page: number) => void;
-  onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
-  onClearSearch: () => void;
   onClickButtonTopContent: () => void;
   renderCell: (item: Record<string, unknown>, columnKey: Key) => ReactNode;
   totalPages: number;
@@ -37,19 +32,22 @@ interface DataTableProps {
 const DataTable: FC<DataTableProps> = ({
   buttonTopContentLabel,
   columns,
-  currentPage,
   data,
   emptyContent,
   isLoading,
-  limit,
-  onChangeLimit,
-  onChangePage,
-  onChangeSearch,
-  onClearSearch,
   onClickButtonTopContent,
   renderCell,
   totalPages,
 }) => {
+  const {
+    currentLimit,
+    currentPage,
+    handleChangeLimit,
+    handleChangePage,
+    handleClearSearch,
+    handleSearch,
+  } = useChangeUrl();
+
   const TopContent = useMemo(() => {
     return (
       <div className="mb-2 flex flex-col-reverse justify-between gap-y-4 lg:flex-row lg:items-center">
@@ -58,8 +56,8 @@ const DataTable: FC<DataTableProps> = ({
           variant="flat"
           placeholder="Search by name"
           startContent={<CiSearch />}
-          onClear={onClearSearch}
-          onChange={onChangeSearch}
+          onClear={handleClearSearch}
+          onChange={handleSearch}
           className="w-full lg:max-w-64"
         />
         {buttonTopContentLabel && (
@@ -74,8 +72,8 @@ const DataTable: FC<DataTableProps> = ({
     );
   }, [
     buttonTopContentLabel,
-    onChangeSearch,
-    onClearSearch,
+    handleSearch,
+    handleClearSearch,
     onClickButtonTopContent,
   ]);
 
@@ -85,9 +83,9 @@ const DataTable: FC<DataTableProps> = ({
         <Select
           className="hidden max-w-32 lg:block"
           size="md"
-          selectedKeys={[limit]}
+          selectedKeys={[`${currentLimit}`]}
           selectionMode="single"
-          onChange={onChangeLimit}
+          onChange={handleChangeLimit}
           startContent={<p className="text-sm">Show:</p>}
           disallowEmptySelection
         >
@@ -103,13 +101,19 @@ const DataTable: FC<DataTableProps> = ({
             isCompact
             showControls
             total={totalPages}
-            page={currentPage}
-            onChange={onChangePage}
+            page={Number(currentPage)}
+            onChange={handleChangePage}
           />
         )}
       </div>
     );
-  }, [limit, currentPage, totalPages, onChangeLimit, onChangePage]);
+  }, [
+    currentLimit,
+    currentPage,
+    totalPages,
+    handleChangeLimit,
+    handleChangePage,
+  ]);
 
   return (
     <Table
