@@ -9,6 +9,7 @@ import useEvent from "./useEvent";
 import { COLUMN_LIST_EVENTS } from "./Event.constants";
 import DropdownAction from "@/components/commons/DropdownAction";
 import AddEventModal from "./AddEventModal";
+import DeleteEventModal from "./DeleteEventModal";
 
 interface EventProps {}
 
@@ -93,6 +94,12 @@ const Event: FC<EventProps> = ({}) => {
       <AddEventModal
         {...disclosureAddEventModal}
         refetchEvents={refetchEvents}
+      />
+      <DeleteEventModal
+        {...disclosureDeleteEventModal}
+        refetchEvent={refetchEvents}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
       />
     </section>
   );

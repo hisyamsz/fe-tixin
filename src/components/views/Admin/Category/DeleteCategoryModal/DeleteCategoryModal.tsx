@@ -1,14 +1,6 @@
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  Spinner,
-} from "@nextui-org/react";
 import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import useDeleteCategoryModal from "./useDeleteCategoryModal";
+import DeleteModal from "@/components/commons/DeleteModal";
 
 interface DeleteCategoryModalProps {
   isOpen: boolean;
@@ -41,46 +33,20 @@ const DeleteCategoryModal: FC<DeleteCategoryModalProps> = ({
   }, [isSuccessDeleteCategory]);
 
   return (
-    <Modal
-      onOpenChange={onOpenChange}
-      isOpen={isOpen}
-      placement="center"
-      scrollBehavior="inside"
-    >
-      <ModalContent className="m-4">
-        <ModalHeader>Delete Category</ModalHeader>
-        <ModalBody>
-          <p className="text-medium font-semibold">
-            Are you sure want to delete this category?
-          </p>
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            onPress={() => {
-              onClose();
-              setSelectedId("");
-            }}
-            color="primary"
-            variant="bordered"
-            disabled={isPendingDeleteCategory}
-          >
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            color="primary"
-            onPress={() => mutateDeleteCategory(selectedId)}
-            disabled={isPendingDeleteCategory}
-          >
-            {isPendingDeleteCategory ? (
-              <Spinner size="sm" color="white" />
-            ) : (
-              "Delete Category"
-            )}
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+    <div>
+      <DeleteModal
+        title="Delete Category"
+        description="Are you sure want to delete this category?"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        onPressCancel={() => {
+          onClose();
+          setSelectedId("");
+        }}
+        onPressDelete={() => mutateDeleteCategory(selectedId)}
+        disabled={isPendingDeleteCategory}
+      />
+    </div>
   );
 };
 
