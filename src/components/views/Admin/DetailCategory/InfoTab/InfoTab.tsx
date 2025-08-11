@@ -54,7 +54,7 @@ const InfoTab: FC<InfoTabProps> = ({
         </p>
         <CardBody>
           <form
-            className="mt-2 flex flex-col gap-5"
+            className="mt-2 flex flex-col gap-4"
             onSubmit={handleSubmitUpdateInfo(onUpdate)}
           >
             <Skeleton isLoaded={!!dataCategory?.name} className="rounded-lg">
@@ -65,7 +65,6 @@ const InfoTab: FC<InfoTabProps> = ({
                   <Input
                     {...field}
                     autoComplete="off"
-                    className="mt-2"
                     errorMessage={errorsUpdateInfo.name?.message}
                     isInvalid={errorsUpdateInfo.name !== undefined}
                     label="Name"
@@ -84,7 +83,6 @@ const InfoTab: FC<InfoTabProps> = ({
                   <Textarea
                     {...field}
                     autoComplete="off"
-                    className="mt-2"
                     errorMessage={errorsUpdateInfo.description?.message}
                     isInvalid={errorsUpdateInfo.description !== undefined}
                     label="Description"

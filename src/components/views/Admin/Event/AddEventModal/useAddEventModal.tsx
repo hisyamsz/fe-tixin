@@ -10,7 +10,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { getLocalTimeZone, now } from "@internationalized/date";
 import { DateValue } from "@nextui-org/react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -33,7 +32,6 @@ const addEventSchema = yup.object().shape({
 
 const useAddEventModal = () => {
   const { setToaster } = useContext(ToasterContext);
-  const router = useRouter();
   const debounce = useDebounce();
   const {
     isPendingUploadFile,
@@ -90,13 +88,7 @@ const useAddEventModal = () => {
     enabled: true,
   });
 
-  const { data: dataRegions } = useQuery({
-    queryKey: ["Regency"],
-    queryFn: () => eventServices.searchLocation(),
-    enabled: true,
-  });
-
-  const [searchRegency, setSearchRegency] = useState("");
+  const [searchRegency, setSearchRegency] = useState<string>("");
 
   const { data: dataRegion } = useQuery({
     queryKey: ["Region", searchRegency],
@@ -140,10 +132,10 @@ const useAddEventModal = () => {
       isFeatured: data.isFeatured === "true",
       isPublish: data.isPublish === "true",
       isOnline: data.isOnline === "true",
-      startDate: toDateStandard(data.startDate),
-      endDate: toDateStandard(data.endDate),
+      startDate: data.startDate ? toDateStandard(data.startDate) : "",
+      endDate: data.endDate ? toDateStandard(data.endDate) : "",
       location: {
-        region: data.region,
+        region: `${data.region}`,
         coordinates: [Number(data.latitude), Number(data.longitude)],
       },
       banner: data.banner,

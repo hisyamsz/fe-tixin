@@ -20,7 +20,6 @@ import { Controller } from "react-hook-form";
 import useAddEventModal from "./useAddEventModal";
 import { ICategory } from "@/types/Category";
 import { IRegency } from "@/types/Event";
-import { getLocalTimeZone, now } from "@internationalized/date";
 
 interface AddEventModalProps {
   isOpen: boolean;
@@ -139,7 +138,6 @@ const AddEventModal: FC<AddEventModalProps> = ({
                       {...field}
                       label="Start Date"
                       variant="bordered"
-                      defaultValue={now(getLocalTimeZone())}
                       hideTimeZone
                       showMonthAndYearPickers
                       isInvalid={errors.startDate !== undefined}
@@ -155,7 +153,6 @@ const AddEventModal: FC<AddEventModalProps> = ({
                       {...field}
                       label="End Date"
                       variant="bordered"
-                      defaultValue={now(getLocalTimeZone())}
                       hideTimeZone
                       showMonthAndYearPickers
                       isInvalid={errors.endDate !== undefined}
