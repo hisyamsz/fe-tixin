@@ -27,6 +27,7 @@ const addEventSchema = yup.object().shape({
   region: yup.string().required("Please select location"),
   latitude: yup.string().required("Please input latitude coordinate"),
   longitude: yup.string().required("Please input longitude coordinate"),
+  address: yup.string().required("Please input address"),
   banner: yup.mixed<FileList | string>().required("Please input banner"),
 });
 
@@ -136,6 +137,7 @@ const useAddEventModal = () => {
       endDate: data.endDate ? toDateStandard(data.endDate) : "",
       location: {
         region: `${data.region}`,
+        address: `${data.address}`,
         coordinates: [Number(data.latitude), Number(data.longitude)],
       },
       banner: data.banner,

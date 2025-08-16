@@ -265,6 +265,20 @@ const AddEventModal: FC<AddEventModalProps> = ({
                   )}
                 />
                 <Controller
+                  name="address"
+                  control={control}
+                  render={({ field }) => (
+                    <Textarea
+                      {...field}
+                      label="Address"
+                      variant="bordered"
+                      autoComplete="off"
+                      isInvalid={errors.address !== undefined}
+                      errorMessage={errors.address?.message}
+                    />
+                  )}
+                />
+                <Controller
                   name="latitude"
                   control={control}
                   render={({ field }) => (

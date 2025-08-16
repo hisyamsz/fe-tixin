@@ -70,6 +70,7 @@ const useDetailEvent = () => {
       isOnline: data.isOnline === "true",
       location: {
         region: `${data.region}`,
+        address: `${data.address}`,
         coordinates: [Number(data.latitude), Number(data.longitude)],
       },
       banner: data.banner,

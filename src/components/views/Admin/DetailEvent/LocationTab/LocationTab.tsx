@@ -12,6 +12,7 @@ import {
   SelectItem,
   Skeleton,
   Spinner,
+  Textarea,
 } from "@nextui-org/react";
 import { Controller } from "react-hook-form";
 import { IEventForm, IRegency } from "@/types/Event";
@@ -58,6 +59,7 @@ const LocationTab: FC<LocationTabProps> = ({
         "longitude",
         `${dataEvent?.location?.coordinates[1]}`,
       );
+      setValueUpdateLocation("address", `${dataEvent?.location?.address}`);
     }
   }, [dataEvent]);
 
@@ -113,6 +115,7 @@ const LocationTab: FC<LocationTabProps> = ({
                 <div className="h-16 w-full" />
               )}
             </Skeleton>
+
             <Skeleton
               isLoaded={!!dataEvent?.location?.coordinates[0]}
               className="rounded-lg"
@@ -134,6 +137,7 @@ const LocationTab: FC<LocationTabProps> = ({
                 )}
               />
             </Skeleton>
+
             <Skeleton
               isLoaded={!!dataEvent?.location?.coordinates[1]}
               className="rounded-lg"
@@ -155,6 +159,7 @@ const LocationTab: FC<LocationTabProps> = ({
                 )}
               />
             </Skeleton>
+
             <Skeleton
               isLoaded={
                 !!dataEvent?.location?.region && !isPendingDefaultRegion
@@ -190,6 +195,27 @@ const LocationTab: FC<LocationTabProps> = ({
               ) : (
                 <div className="h-16 w-full" />
               )}
+            </Skeleton>
+
+            <Skeleton
+              isLoaded={!!dataEvent?.location?.address}
+              className="rounded-lg"
+            >
+              <Controller
+                name="address"
+                control={controlUpdateLocation}
+                render={({ field }) => (
+                  <Textarea
+                    {...field}
+                    label="Address"
+                    labelPlacement="outside"
+                    variant="bordered"
+                    autoComplete="off"
+                    isInvalid={errorsUpdateLocation.address !== undefined}
+                    errorMessage={errorsUpdateLocation.address?.message}
+                  />
+                )}
+              />
             </Skeleton>
 
             <Button

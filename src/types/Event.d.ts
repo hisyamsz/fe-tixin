@@ -18,15 +18,17 @@ export interface IEvent {
   endDate?: string;
   location?: {
     region: string;
+    address: string;
     coordinates: number[];
   };
   banner?: string | FileList;
 }
 
 export interface IEventForm extends IEvent {
-  region?: string;
   startDate?: DateValue;
   endDate?: DateValue;
+  region?: string;
+  address?: string;
   latitude?: string;
   longitude?: string;
 }
