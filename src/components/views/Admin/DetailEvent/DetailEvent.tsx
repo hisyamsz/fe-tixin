@@ -4,6 +4,7 @@ import InfoTab from "./InfoTab";
 import useDetailEvent from "./useDetailEvent";
 import CoverTab from "./CoverTab";
 import LocationTab from "./LocationTab";
+import TicketTab from "./TicketTab";
 
 interface DetailEventProps {}
 
@@ -52,6 +53,9 @@ const DetailEvent: FC<DetailEventProps> = ({}) => {
           isSuccessUpdate={isSuccessUpdateEvent}
           isPendingDefaultRegion={isPendingDefaultRegion}
         />
+      </Tab>
+      <Tab key="ticket" title="Ticket">
+        <TicketTab />
       </Tab>
     </Tabs>
   );
