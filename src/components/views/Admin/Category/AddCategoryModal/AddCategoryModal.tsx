@@ -65,7 +65,7 @@ const AddCategoryModal: FC<AddCategoryModalProps> = ({
         <ModalContent className="m-4 p-2">
           <ModalHeader>Create Category</ModalHeader>
           <ModalBody>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-4">
               <p className="text-sm font-bold">Information</p>
               <Controller
                 name="name"
@@ -80,7 +80,6 @@ const AddCategoryModal: FC<AddCategoryModalProps> = ({
                     autoComplete="off"
                     isInvalid={errors.name !== undefined}
                     errorMessage={errors.name?.message}
-                    className="mb-2"
                   />
                 )}
               />
@@ -95,7 +94,6 @@ const AddCategoryModal: FC<AddCategoryModalProps> = ({
                     autoComplete="off"
                     isInvalid={errors.description !== undefined}
                     errorMessage={errors.description?.message}
-                    className="mb-2"
                   />
                 )}
               />

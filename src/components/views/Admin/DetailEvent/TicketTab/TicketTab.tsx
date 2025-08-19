@@ -11,6 +11,7 @@ import {
 import { FC, Key, ReactNode, useCallback } from "react";
 import { COLUMN_LIST_TICKETS } from "./TicketTab.constant";
 import useTicketTab from "./useTicketTab";
+import AddTicketModal from "./AddTicketModal";
 
 interface TicketTabProps {}
 
@@ -53,31 +54,41 @@ const TicketTab: FC<TicketTabProps> = ({}) => {
   );
 
   return (
-    <Card className="w-full px-4 py-2">
-      <CardHeader className="flex items-center justify-between">
-        <div className="flex flex-col items-center">
-          <h1 className="w-full text-xl font-bold">Event Ticket</h1>
-          <p className="w-full text-sm text-default-400">
-            Manage ticket of this event
-          </p>
-        </div>
-        <Button color="primary">Add New Ticket</Button>
-      </CardHeader>
-      <CardBody className="pt-0">
-        <DataTable
-          columns={COLUMN_LIST_TICKETS}
-          data={dataTicket || []}
-          emptyContent="Ticket is empty"
-          isLoading={
-            isLoadingDataTicket || isPendingDataTicket || isRefetchingDataTicket
-          }
-          renderCell={renderCell}
-          totalPages={1}
-          showLimit={false}
-          showSearch={false}
-        />
-      </CardBody>
-    </Card>
+    <section>
+      <Card className="w-full px-4 py-2">
+        <CardHeader className="flex items-center justify-between">
+          <div className="flex flex-col items-center">
+            <h1 className="w-full text-xl font-bold">Event Ticket</h1>
+            <p className="w-full text-sm text-default-400">
+              Manage ticket of this event
+            </p>
+          </div>
+          <Button color="primary" onPress={disclosureAddTicketModal.onOpen}>
+            Add New Ticket
+          </Button>
+        </CardHeader>
+        <CardBody className="pt-0">
+          <DataTable
+            columns={COLUMN_LIST_TICKETS}
+            data={dataTicket || []}
+            emptyContent="Ticket is empty"
+            isLoading={
+              isLoadingDataTicket ||
+              isPendingDataTicket ||
+              isRefetchingDataTicket
+            }
+            renderCell={renderCell}
+            totalPages={1}
+            showLimit={false}
+            showSearch={false}
+          />
+        </CardBody>
+      </Card>
+      <AddTicketModal
+        {...disclosureAddTicketModal}
+        refetchTicket={refetchTicket}
+      />
+    </section>
   );
 };
 
