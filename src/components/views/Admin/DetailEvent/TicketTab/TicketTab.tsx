@@ -12,6 +12,7 @@ import { FC, Key, ReactNode, useCallback } from "react";
 import { COLUMN_LIST_TICKETS } from "./TicketTab.constant";
 import useTicketTab from "./useTicketTab";
 import AddTicketModal from "./AddTicketModal";
+import DeleteTicketModal from "./DeleteTicketModal";
 
 interface TicketTabProps {}
 
@@ -22,6 +23,8 @@ const TicketTab: FC<TicketTabProps> = ({}) => {
     isPendingDataTicket,
     isRefetchingDataTicket,
     refetchTicket,
+    selectedId,
+    setSelectedId,
   } = useTicketTab();
 
   const disclosureAddTicketModal = useDisclosure();
@@ -42,6 +45,7 @@ const TicketTab: FC<TicketTabProps> = ({}) => {
                 disclosureUpdateTicketModal.onOpen();
               }}
               onPressButtonDelete={() => {
+                setSelectedId(`${ticket._id}`);
                 disclosureDeleteTicketModal.onOpen();
               }}
             />
@@ -87,6 +91,12 @@ const TicketTab: FC<TicketTabProps> = ({}) => {
       <AddTicketModal
         {...disclosureAddTicketModal}
         refetchTicket={refetchTicket}
+      />
+      <DeleteTicketModal
+        {...disclosureDeleteTicketModal}
+        refetchTicket={refetchTicket}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
       />
     </section>
   );
