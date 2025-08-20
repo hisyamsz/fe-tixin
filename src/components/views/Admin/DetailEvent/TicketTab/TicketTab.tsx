@@ -8,11 +8,13 @@ import {
   CardHeader,
   useDisclosure,
 } from "@nextui-org/react";
-import { FC, Key, ReactNode, useCallback } from "react";
+import { FC, Key, ReactNode, useCallback, useState } from "react";
 import { COLUMN_LIST_TICKETS } from "./TicketTab.constant";
 import useTicketTab from "./useTicketTab";
 import AddTicketModal from "./AddTicketModal";
 import DeleteTicketModal from "./DeleteTicketModal";
+import UpdateTicketModal from "./UpdateTicketModal";
+import { ITicket } from "@/types/Ticket";
 
 interface TicketTabProps {}
 
@@ -23,13 +25,15 @@ const TicketTab: FC<TicketTabProps> = ({}) => {
     isPendingDataTicket,
     isRefetchingDataTicket,
     refetchTicket,
-    selectedId,
-    setSelectedId,
   } = useTicketTab();
 
   const disclosureAddTicketModal = useDisclosure();
   const disclosureDeleteTicketModal = useDisclosure();
   const disclosureUpdateTicketModal = useDisclosure();
+
+  const [selectedDataTicket, setSelectedDataTicket] = useState<ITicket | null>(
+    null,
+  );
 
   const renderCell = useCallback(
     (ticket: Record<string, unknown>, columnKey: Key) => {
@@ -42,10 +46,11 @@ const TicketTab: FC<TicketTabProps> = ({}) => {
           return (
             <DropdownAction
               onPressButtonDetail={() => {
+                setSelectedDataTicket(ticket as ITicket);
                 disclosureUpdateTicketModal.onOpen();
               }}
               onPressButtonDelete={() => {
-                setSelectedId(`${ticket._id}`);
+                setSelectedDataTicket(ticket as ITicket);
                 disclosureDeleteTicketModal.onOpen();
               }}
             />
@@ -95,8 +100,14 @@ const TicketTab: FC<TicketTabProps> = ({}) => {
       <DeleteTicketModal
         {...disclosureDeleteTicketModal}
         refetchTicket={refetchTicket}
-        selectedId={selectedId}
-        setSelectedId={setSelectedId}
+        selectedDataTicket={selectedDataTicket}
+        setSelectedDataTicket={setSelectedDataTicket}
+      />
+      <UpdateTicketModal
+        {...disclosureUpdateTicketModal}
+        refetchTicket={refetchTicket}
+        selectedDataTicket={selectedDataTicket}
+        setSelectedDataTicket={setSelectedDataTicket}
       />
     </section>
   );

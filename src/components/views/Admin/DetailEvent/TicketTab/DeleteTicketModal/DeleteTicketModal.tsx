@@ -1,14 +1,15 @@
 import DeleteModal from "@/components/commons/DeleteModal";
 import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import useDeleteTicketModal from "./useDeleteTicketModal";
+import { ITicket } from "@/types/Ticket";
 
 interface DeleteTicketModalProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenChange: () => void;
   refetchTicket: () => void;
-  selectedId: string;
-  setSelectedId: Dispatch<SetStateAction<string>>;
+  selectedDataTicket: ITicket | null;
+  setSelectedDataTicket: Dispatch<SetStateAction<ITicket | null>>;
 }
 
 const DeleteTicketModal: FC<DeleteTicketModalProps> = ({
@@ -16,8 +17,8 @@ const DeleteTicketModal: FC<DeleteTicketModalProps> = ({
   onClose,
   onOpenChange,
   refetchTicket,
-  selectedId,
-  setSelectedId,
+  selectedDataTicket,
+  setSelectedDataTicket,
 }) => {
   const { mutateDeleteTicket, isPendingDeleteTicket, isSuccessDeleteTicket } =
     useDeleteTicketModal();
@@ -26,6 +27,7 @@ const DeleteTicketModal: FC<DeleteTicketModalProps> = ({
     if (isSuccessDeleteTicket) {
       onClose();
       refetchTicket();
+      setSelectedDataTicket(null);
     }
   }, [isSuccessDeleteTicket]);
 
@@ -37,9 +39,9 @@ const DeleteTicketModal: FC<DeleteTicketModalProps> = ({
       onOpenChange={onOpenChange}
       onPressCancel={() => {
         onClose();
-        setSelectedId("");
+        setSelectedDataTicket(null);
       }}
-      onPressDelete={() => mutateDeleteTicket(selectedId)}
+      onPressDelete={() => mutateDeleteTicket(`${selectedDataTicket?._id}`)}
       disabled={isPendingDeleteTicket}
     />
   );

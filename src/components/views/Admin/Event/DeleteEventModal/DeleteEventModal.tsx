@@ -26,6 +26,7 @@ const DeleteEventModal: FC<DeleteEventModalProps> = ({
     if (isSuccessDeleteEvent) {
       onClose();
       refetchEvent();
+      setSelectedId("");
     }
   }, [isSuccessDeleteEvent]);
 

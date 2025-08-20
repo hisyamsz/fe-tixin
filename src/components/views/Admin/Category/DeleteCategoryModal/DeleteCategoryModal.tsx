@@ -29,24 +29,23 @@ const DeleteCategoryModal: FC<DeleteCategoryModalProps> = ({
     if (isSuccessDeleteCategory) {
       onClose();
       refetchCategory();
+      setSelectedId("");
     }
   }, [isSuccessDeleteCategory]);
 
   return (
-    <div>
-      <DeleteModal
-        title="Delete Category"
-        description="Are you sure want to delete this category?"
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        onPressCancel={() => {
-          onClose();
-          setSelectedId("");
-        }}
-        onPressDelete={() => mutateDeleteCategory(selectedId)}
-        disabled={isPendingDeleteCategory}
-      />
-    </div>
+    <DeleteModal
+      title="Delete Category"
+      description="Are you sure want to delete this category?"
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      onPressCancel={() => {
+        onClose();
+        setSelectedId("");
+      }}
+      onPressDelete={() => mutateDeleteCategory(selectedId)}
+      disabled={isPendingDeleteCategory}
+    />
   );
 };
 
