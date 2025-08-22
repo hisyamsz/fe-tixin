@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { FC, Key, ReactNode, useCallback, useEffect } from "react";
 import { COLUMN_LIST_BANNERS } from "./Banner.constant";
 import useBanner from "./useBanner";
+import AddBannerModal from "./AddBannerModal";
 
 interface BannerProps {}
 
@@ -36,8 +37,8 @@ const Banner: FC<BannerProps> = ({}) => {
             <Image
               src={`${cellValue}`}
               alt="image"
-              width={200}
-              height={100}
+              width={300}
+              height={200}
               className="aspect-video w-44 rounded-lg object-cover"
             />
           );
@@ -88,6 +89,10 @@ const Banner: FC<BannerProps> = ({}) => {
           totalPages={dataBanner?.pagination.totalPage}
         />
       )}
+      <AddBannerModal
+        {...disclosureAddBannerModal}
+        refetchBanner={refetchBanner}
+      />
     </section>
   );
 };
