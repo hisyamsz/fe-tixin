@@ -8,6 +8,7 @@ import { FC, Key, ReactNode, useCallback, useEffect } from "react";
 import { COLUMN_LIST_BANNERS } from "./Banner.constant";
 import useBanner from "./useBanner";
 import AddBannerModal from "./AddBannerModal";
+import DeleteBannerModal from "./DeleteBannerModal";
 
 interface BannerProps {}
 
@@ -91,6 +92,12 @@ const Banner: FC<BannerProps> = ({}) => {
       )}
       <AddBannerModal
         {...disclosureAddBannerModal}
+        refetchBanner={refetchBanner}
+      />
+      <DeleteBannerModal
+        {...disclosureDeleteBannerModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
         refetchBanner={refetchBanner}
       />
     </section>
