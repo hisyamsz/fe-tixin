@@ -10,7 +10,7 @@ import * as yup from "yup";
 
 const addBannerSchema = yup.object().shape({
   title: yup.string().required("Please input title"),
-  isShow: yup.string().required("Please input status"),
+  isShow: yup.string().required("Please select status"),
   image: yup.mixed<FileList | string>().required("Please input image"),
 });
 

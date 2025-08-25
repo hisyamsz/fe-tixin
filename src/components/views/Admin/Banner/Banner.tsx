@@ -38,9 +38,9 @@ const Banner: FC<BannerProps> = ({}) => {
             <Image
               src={`${cellValue}`}
               alt="image"
-              width={300}
+              width={400}
               height={200}
-              className="aspect-video w-44 rounded-lg object-cover"
+              className="rounded-lg object-contain"
             />
           );
         case "isShow":

@@ -66,6 +66,17 @@ const LocationTab: FC<LocationTabProps> = ({
   useEffect(() => {
     if (isSuccessUpdate) {
       resetUpdateLocation();
+      setValueUpdateLocation("isOnline", `${dataEvent?.isOnline}`);
+      setValueUpdateLocation("region", `${dataEvent?.location?.region}`);
+      setValueUpdateLocation(
+        "latitude",
+        `${dataEvent?.location?.coordinates[0]}`,
+      );
+      setValueUpdateLocation(
+        "longitude",
+        `${dataEvent?.location?.coordinates[1]}`,
+      );
+      setValueUpdateLocation("address", `${dataEvent?.location?.address}`);
     }
   }, [isSuccessUpdate]);
 
@@ -220,7 +231,7 @@ const LocationTab: FC<LocationTabProps> = ({
           <Button
             type="submit"
             color="primary"
-            className="disabled:bg-default-500"
+            className="mt-2 disabled:bg-default-500"
             disabled={isPendingUpdate || !dataEvent?._id}
           >
             {isPendingUpdate ? (

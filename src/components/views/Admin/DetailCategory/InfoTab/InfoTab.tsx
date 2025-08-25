@@ -42,6 +42,8 @@ const InfoTab: FC<InfoTabProps> = ({
   useEffect(() => {
     if (isSuccessUpdate) {
       resetUpdateInfo();
+      setValueUpdateInfo("name", `${dataCategory?.name}`);
+      setValueUpdateInfo("description", `${dataCategory?.description}`);
     }
   }, [isSuccessUpdate]);
 
@@ -75,7 +77,10 @@ const InfoTab: FC<InfoTabProps> = ({
                 )}
               />
             </Skeleton>
-            <Skeleton isLoaded={!!dataCategory?.name} className="rounded-lg">
+            <Skeleton
+              isLoaded={!!dataCategory?.description}
+              className="rounded-lg"
+            >
               <Controller
                 name="description"
                 control={controlUpdateInfo}
@@ -96,7 +101,7 @@ const InfoTab: FC<InfoTabProps> = ({
             <Button
               type="submit"
               color="primary"
-              className="disabled:bg-default-500"
+              className="mt-2 disabled:bg-default-500"
               disabled={isPendingUpdate || !dataCategory?._id}
             >
               {isPendingUpdate ? (

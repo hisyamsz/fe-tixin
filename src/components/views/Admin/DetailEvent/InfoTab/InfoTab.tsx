@@ -62,6 +62,14 @@ const InfoTab: FC<InfoTabProps> = ({
   useEffect(() => {
     if (isSuccessUpdate) {
       resetUpdateInfo();
+      setValueUpdateInfo("name", `${dataEvent?.name}`);
+      setValueUpdateInfo("slug", `${dataEvent?.slug}`);
+      setValueUpdateInfo("category", `${dataEvent?.category}`);
+      setValueUpdateInfo("startDate", toInputDate(`${dataEvent?.startDate}`));
+      setValueUpdateInfo("endDate", toInputDate(`${dataEvent?.endDate}`));
+      setValueUpdateInfo("isPublish", `${dataEvent?.isPublish}`);
+      setValueUpdateInfo("isFeatured", `${dataEvent?.isFeatured}`);
+      setValueUpdateInfo("description", `${dataEvent?.description}`);
     }
   }, [isSuccessUpdate]);
 
@@ -194,6 +202,7 @@ const InfoTab: FC<InfoTabProps> = ({
                     <Select
                       {...field}
                       label="Status"
+                      labelPlacement="outside"
                       variant="bordered"
                       isInvalid={errorsUpdateInfo.isPublish !== undefined}
                       errorMessage={errorsUpdateInfo.isPublish?.message}
@@ -227,6 +236,7 @@ const InfoTab: FC<InfoTabProps> = ({
                     <Select
                       {...field}
                       label="Featured"
+                      labelPlacement="outside"
                       variant="bordered"
                       isInvalid={errorsUpdateInfo.isFeatured !== undefined}
                       errorMessage={errorsUpdateInfo.isFeatured?.message}
@@ -272,7 +282,7 @@ const InfoTab: FC<InfoTabProps> = ({
             <Button
               type="submit"
               color="primary"
-              className="disabled:bg-default-500"
+              className="mt-2 disabled:bg-default-500"
               disabled={isPendingUpdate || !dataEvent?._id}
             >
               {isPendingUpdate ? (
