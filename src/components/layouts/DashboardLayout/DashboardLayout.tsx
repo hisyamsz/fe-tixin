@@ -17,12 +17,12 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
   title,
   type = "admin",
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <Fragment>
       <PageHead title={title} />
-      <div className="flex max-w-screen-2xl 2xl:container">
+      <div className="mx-auto flex max-w-screen-2xl 2xl:container">
         <DashboardLayoutSidebar
           sidebarItems={type === "admin" ? SIDEBAR_ADMIN : SIDEBAR_MEMBER}
           isOpen={open}
@@ -33,11 +33,11 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
             isBlurred={false}
             position="static"
             classNames={{ wrapper: "p-0" }}
+            onMenuOpenChange={setOpen}
           >
             <h1 className="text-3xl font-bold">{title}</h1>
             <NavbarMenuToggle
-              aria-label={open ? "Close Menu" : "Open Menu"}
-              onClick={() => setOpen(!open)}
+              aria-label={open ? "Close menu" : "Open menu"}
               className="lg:hidden"
             />
           </Navbar>
