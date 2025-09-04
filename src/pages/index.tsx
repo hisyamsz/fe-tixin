@@ -1,12 +1,15 @@
-import PageHead from "@/components/commons/PageHead";
-import Link from "next/link";
+import LandingPageLayout from "@/components/layouts/LandingPageLayout";
+import Home from "@/components/views/Home";
+import { FC } from "react";
 
-export default function Home() {
+interface HomePageProps {}
+
+const HomePage: FC<HomePageProps> = ({}) => {
   return (
-    <main className="flex h-screen items-center justify-center gap-10">
-      <PageHead title="Tixin | Home" />
-      <Link href={"/auth/login"}>Login</Link>
-      <Link href={"/auth/register"}>Register</Link>
-    </main>
+    <LandingPageLayout title="Tixin | Home">
+      <Home />
+    </LandingPageLayout>
   );
-}
+};
+
+export default HomePage;

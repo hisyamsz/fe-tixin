@@ -14,8 +14,8 @@ export interface IEvent {
   isFeatured?: string | boolean;
   isOnline?: string | boolean;
   description?: string;
-  startDate?: string;
-  endDate?: string;
+  startDate?: string | DateValue;
+  endDate?: string | DateValue;
   location?: {
     region: string;
     address: string;
@@ -25,8 +25,6 @@ export interface IEvent {
 }
 
 export interface IEventForm extends IEvent {
-  startDate?: DateValue;
-  endDate?: DateValue;
   region?: string;
   address?: string;
   latitude?: string;
