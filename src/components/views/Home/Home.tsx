@@ -26,6 +26,7 @@ const Home: FC<HomeProps> = ({}) => {
         title="Featured Events"
         dataEvents={dataFeaturedEvents}
         isLoadingEvents={isLoadingFeaturedEvents}
+        urlMore="/event?isFeatured=true"
       />
       <HomeBanner
         src={dataBanner && dataBanner[1].image}

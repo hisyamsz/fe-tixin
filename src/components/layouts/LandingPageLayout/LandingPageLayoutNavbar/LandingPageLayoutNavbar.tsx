@@ -7,6 +7,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
   Input,
+  Link,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -16,7 +17,6 @@ import {
   NavbarMenuToggle,
 } from "@nextui-org/react";
 import Image from "next/image";
-import Link from "next/link";
 import React, { FC, Fragment, useEffect, useState } from "react";
 import { BUTTON_ITEMS, NAVBAR_ITEMS } from "../LandingPageLayout.constant";
 import { cn } from "@/utils/cn";
@@ -143,13 +143,18 @@ const LandingPageLayoutNavbar: FC<LandingPageLayoutNavbarProps> = ({}) => {
 
         <NavbarMenu className="gap-4">
           {NAVBAR_ITEMS.map((item) => (
-            <NavbarMenuItem
-              key={`nav-${item.label}`}
-              className={cn("font-medium text-default-700 hover:text-primary", {
-                "font-bold text-primary-500": router.pathname === item.href,
-              })}
-            >
-              <Link href={item.href}>{item.label}</Link>
+            <NavbarMenuItem key={`nav-${item.label}`}>
+              <Link
+                href={item.href}
+                className={cn(
+                  "font-medium text-default-700 hover:text-primary",
+                  {
+                    "font-bold text-primary-500": router.pathname === item.href,
+                  },
+                )}
+              >
+                {item.label}
+              </Link>
             </NavbarMenuItem>
           ))}
           {session.status === "authenticated" && (

@@ -1,0 +1,15 @@
+import LandingPageLayout from "@/components/layouts/LandingPageLayout";
+import Event from "@/components/views/Event";
+import { FC } from "react";
+
+interface EventPageProps {}
+
+const EventPage: FC<EventPageProps> = ({}) => {
+  return (
+    <LandingPageLayout title="Tixin | Event">
+      <Event />
+    </LandingPageLayout>
+  );
+};
+
+export default EventPage;
