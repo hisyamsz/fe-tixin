@@ -8,6 +8,8 @@ import {
   DropdownTrigger,
   Input,
   Link,
+  Listbox,
+  ListboxItem,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -15,6 +17,7 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
+  Spinner,
 } from "@nextui-org/react";
 import Image from "next/image";
 import React, { FC, Fragment, useEffect, useState } from "react";
@@ -24,6 +27,7 @@ import { useRouter } from "next/router";
 import { CiSearch } from "react-icons/ci";
 import { signOut, useSession } from "next-auth/react";
 import useLandingPageLayoutNavbar from "./useLandingPageLayoutNavbar";
+import { IEvent } from "@/types/Event";
 
 interface LandingPageLayoutNavbarProps {}
 
@@ -32,13 +36,24 @@ const LandingPageLayoutNavbar: FC<LandingPageLayoutNavbarProps> = ({}) => {
   const session = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  const { dataProfile, refetchProfile } = useLandingPageLayoutNavbar();
+  const {
+    dataProfile,
+    refetchProfile,
+    dataSearchEvents,
+    isLoadingSearchEvents,
+    isRefetchingSearchEvents,
+    handleSearchEvent,
+    search,
+    setSearch,
+  } = useLandingPageLayoutNavbar();
 
   useEffect(() => {
     if (router.isReady) {
       refetchProfile();
     }
   }, [router.isReady]);
+
+  console.log(search);
 
   return (
     <Navbar
@@ -85,9 +100,36 @@ const LandingPageLayoutNavbar: FC<LandingPageLayoutNavbarProps> = ({}) => {
             className="w-[300px]"
             placeholder="Search Event"
             startContent={<CiSearch />}
-            onClear={() => {}}
-            onChange={() => {}}
+            onClear={() => setSearch("")}
+            onChange={handleSearchEvent}
           />
+          {search !== "" && (
+            <Listbox
+              items={dataSearchEvents || []}
+              className="absolute right-0 top-12 rounded-xl border bg-white"
+            >
+              {!isRefetchingSearchEvents && !isLoadingSearchEvents ? (
+                (item: IEvent) => (
+                  <ListboxItem key={item._id} href={`/event/${item.slug}`}>
+                    <div className="flex items-center gap-4">
+                      <Image
+                        src={`${item.banner}`}
+                        alt={`${item.name}`}
+                        width={100}
+                        height={40}
+                        className="w-2/5 rounded-md"
+                      />
+                      <p className="w-3/4 text-wrap font-medium">{item.name}</p>
+                    </div>
+                  </ListboxItem>
+                )
+              ) : (
+                <ListboxItem key="loading">
+                  <Spinner color="primary" size="sm" />
+                </ListboxItem>
+              )}
+            </Listbox>
+          )}
         </NavbarItem>
 
         {session.status === "authenticated" && (
