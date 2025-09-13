@@ -52,6 +52,7 @@ const useHome = () => {
   const { data: dataCategories, isLoading: isLoadingCategories } = useQuery({
     queryKey: ["Categories"],
     queryFn: getCategories,
+    enabled: true,
   });
 
   return {

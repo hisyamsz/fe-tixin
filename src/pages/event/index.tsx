@@ -6,7 +6,7 @@ interface EventPageProps {}
 
 const EventPage: FC<EventPageProps> = ({}) => {
   return (
-    <LandingPageLayout title="Tixin | Event">
+    <LandingPageLayout title="Event">
       <Event />
     </LandingPageLayout>
   );

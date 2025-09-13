@@ -1,6 +1,6 @@
 import { IEvent } from "@/types/Event";
 import { cn } from "@/utils/cn";
-import { converTime } from "@/utils/date";
+import { convertTime } from "@/utils/date";
 import { Card, CardBody, CardFooter, Skeleton } from "@nextui-org/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -47,7 +47,7 @@ const CardEvent: FC<CardEventProps> = ({
             </h2>
             <p className="mb-2 line-clamp-2">{event?.description}</p>
             <p className="text-sm text-foreground-500">
-              {converTime(`${event?.startDate}`)}
+              {convertTime(`${event?.startDate}`)}
             </p>
           </CardFooter>
         </Fragment>

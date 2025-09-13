@@ -53,8 +53,6 @@ const LandingPageLayoutNavbar: FC<LandingPageLayoutNavbarProps> = ({}) => {
     }
   }, [router.isReady]);
 
-  console.log(search);
-
   return (
     <Navbar
       maxWidth="full"

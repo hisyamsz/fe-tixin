@@ -6,7 +6,7 @@ interface HomePageProps {}
 
 const HomePage: FC<HomePageProps> = ({}) => {
   return (
-    <LandingPageLayout title="Tixin | Home">
+    <LandingPageLayout title="Home">
       <Home />
     </LandingPageLayout>
   );

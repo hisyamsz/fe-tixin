@@ -12,12 +12,12 @@ const HomeBanner: FC<HomeBannerProps> = ({ src, isLoading }) => {
     <div className="mx-4 mb-16">
       <Skeleton
         isLoaded={isLoading}
-        className="h-[20vw] w-full rounded-2xl object-cover object-center"
+        className="h-[30vw] w-full rounded-2xl object-cover object-center"
       >
         <Image
           src={src}
           alt="banner"
-          className="h-[20vw] w-full rounded-2xl object-cover object-center"
+          className="h-[30vw] w-full rounded-2xl object-cover object-center"
           width={1920}
           height={800}
         />

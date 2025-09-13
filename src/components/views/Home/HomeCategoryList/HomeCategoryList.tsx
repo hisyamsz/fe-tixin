@@ -21,7 +21,7 @@ const HomeCategoryList: FC<HomeCategoryListProps> = ({
       <CardBody className="mt-4 p-0">
         <div className="grid auto-cols-[8rem] grid-flow-col gap-4 overflow-x-auto pb-4 lg:grid-cols-8 lg:pb-0">
           {!isLoadingCategories
-            ? dataCategories.map((category) => (
+            ? dataCategories?.map((category) => (
                 <Link
                   key={`categories-list-${category._id}`}
                   href={`/event?category=${category._id}`}

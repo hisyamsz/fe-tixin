@@ -27,7 +27,7 @@ export const toInputDate = (date: string) => {
   return formattedDate;
 };
 
-export const converTime = (isoDate: string) => {
+export const convertTime = (isoDate: string) => {
   const dateObject = new Date(isoDate);
   const date = dateObject.toLocaleDateString("id-ID", {
     day: "numeric",
