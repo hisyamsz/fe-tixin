@@ -200,17 +200,24 @@ const LandingPageLayoutNavbar: FC<LandingPageLayoutNavbarProps> = ({}) => {
           {session.status === "authenticated" && (
             <Fragment>
               <NavbarMenuItem
-                className={cn(
-                  "cursor-pointer font-medium text-default-700 hover:text-primary",
-                  {
-                    hidden: dataProfile?.role !== "admin",
-                  },
-                )}
+                className={cn({
+                  hidden: dataProfile?.role !== "admin",
+                })}
               >
-                <Link href="/admin/dashboard">Admin</Link>
+                <Link
+                  href="/admin/dashboard"
+                  className="font-medium text-default-700 hover:text-primary"
+                >
+                  Admin
+                </Link>
               </NavbarMenuItem>
-              <NavbarMenuItem className="cursor-pointer font-medium text-default-700 hover:text-primary">
-                <Link href="/member/profile">Profile</Link>
+              <NavbarMenuItem>
+                <Link
+                  href="/member/profile"
+                  className="font-medium text-default-700 hover:text-primary"
+                >
+                  Profile
+                </Link>
               </NavbarMenuItem>
               <NavbarMenuItem>
                 <Button

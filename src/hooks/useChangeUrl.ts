@@ -60,7 +60,7 @@ const useChangeUrl = () => {
     router.push({
       query: {
         ...router.query,
-        category,
+        category: category !== "null" ? category : "",
         page: PAGE_DEFAULT,
       },
     });

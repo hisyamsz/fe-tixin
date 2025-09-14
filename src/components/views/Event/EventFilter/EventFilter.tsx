@@ -4,7 +4,6 @@ import useEventFilter from "./useEventFilter";
 import {
   Autocomplete,
   AutocompleteItem,
-  Divider,
   Select,
   SelectItem,
   Skeleton,

@@ -15,7 +15,7 @@ interface HomeSliderProps {
 
 const HomeSlider: FC<HomeSliderProps> = ({ banners, isLoadingBanners }) => {
   return (
-    <div className="mx-4 mb-6 h-[25vw] lg:mx-0 lg:mb-16">
+    <div className="mx-4 mb-6 h-[50vw] lg:mx-0 lg:mb-16 lg:h-[25vw]">
       {!isLoadingBanners ? (
         <Swiper
           pagination={{

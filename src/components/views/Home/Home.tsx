@@ -38,7 +38,7 @@ const Home: FC<HomeProps> = ({}) => {
         isLoadingEvents={isLoadingLatestEvents}
       />
       <HomeCategoryList
-        dataCategories={dataCategories}
+        dataCategories={Array.isArray(dataCategories) ? dataCategories : []}
         isLoadingCategories={isLoadingCategories}
       />
     </div>
