@@ -6,3 +6,9 @@ export interface ITicket {
   description?: string;
   quantity?: number | string;
 }
+
+export interface ICart {
+  events: string;
+  ticket: string;
+  quantity: number;
+}

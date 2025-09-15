@@ -1,4 +1,4 @@
-import { ITicket } from "@/types/Ticket";
+import { ICart, ITicket } from "@/types/Ticket";
 import { convertIDR } from "@/utils/currency";
 import {
   Accordion,
@@ -13,9 +13,16 @@ import React, { FC, Fragment } from "react";
 interface DetailEventTicketProps {
   key?: string;
   ticket?: ITicket;
+  cart: ICart;
+  handldeAddToCart: () => void;
 }
 
-const DetailEventTicket: FC<DetailEventTicketProps> = ({ key, ticket }) => {
+const DetailEventTicket: FC<DetailEventTicketProps> = ({
+  key,
+  ticket,
+  cart,
+  handldeAddToCart,
+}) => {
   const session = useSession();
 
   return (
@@ -55,6 +62,8 @@ const DetailEventTicket: FC<DetailEventTicketProps> = ({ key, ticket }) => {
               color="warning"
               variant="bordered"
               className="font-semibold hover:font-semibold disabled:opacity-30"
+              disabled={cart?.ticket === ticket?._id}
+              onPress={handldeAddToCart}
             >
               Add To Cart
             </Button>

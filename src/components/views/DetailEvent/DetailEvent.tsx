@@ -13,12 +13,21 @@ import { convertTime } from "@/utils/date";
 import Image from "next/image";
 import { ITicket } from "@/types/Ticket";
 import DetailEventTicket from "./DetailEventTicket";
+import DetailEventCart from "./DetailEventCart";
 
 interface DetailEventProps {}
 
 const DetailEvent: FC<DetailEventProps> = ({}) => {
-  const { dataDetailEvent, isPendingDetailEvent, dataTicket, isPendingTicket } =
-    useDetailEvent();
+  const {
+    dataDetailEvent,
+    isPendingDetailEvent,
+    dataTicket,
+    isPendingTicket,
+    dataTicketInCart,
+    cart,
+    handleAddToCart,
+    handleChangeQuantity,
+  } = useDetailEvent();
 
   return (
     <div className="px-8 md:px-0">
@@ -37,7 +46,7 @@ const DetailEvent: FC<DetailEventProps> = ({}) => {
         </Breadcrumbs>
       </Skeleton>
 
-      <section className="mt-4 flex flex-col items-center gap-10 lg:flex-row">
+      <section className="mt-4 flex flex-col gap-10 lg:flex-row">
         <div className="w-full lg:w-4/6">
           <div className="flex flex-col gap-2">
             <Skeleton isLoaded={!!dataDetailEvent?.name} className="rounded-lg">
@@ -130,6 +139,10 @@ const DetailEvent: FC<DetailEventProps> = ({}) => {
                       <DetailEventTicket
                         key={`ticket-${ticket._id}`}
                         ticket={ticket}
+                        cart={cart}
+                        handldeAddToCart={() =>
+                          handleAddToCart(`${ticket._id}`)
+                        }
                       />
                     ))
                   ) : (
@@ -150,7 +163,13 @@ const DetailEvent: FC<DetailEventProps> = ({}) => {
             </Tabs>
           </div>
         </div>
-        <div className="w-full lg:w-2/6"></div>
+        <div className="w-full lg:w-2/6">
+          <DetailEventCart
+            cart={cart}
+            dataTicketInCart={dataTicketInCart}
+            onChangeQuantity={handleChangeQuantity}
+          />
+        </div>
       </section>
     </div>
   );
