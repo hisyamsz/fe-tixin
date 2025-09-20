@@ -39,17 +39,16 @@ const Transaction: FC<TransactionProps> = ({}) => {
               }
               size="sm"
               variant="flat"
+              className="capitalize"
             >
-              {typeof cellValue === "string" &&
-                ((cellValue.charAt(0).toUpperCase() +
-                  cellValue.slice(1)) as ReactNode)}
+              {cellValue as ReactNode}
             </Chip>
           );
         case "actions":
           return (
             <DropdownAction
               onPressButtonDetail={() =>
-                push(`/member/transaction/${transaction._id}`)
+                push(`/member/transaction/${transaction.orderId}`)
               }
               hideButtonDelete
             />

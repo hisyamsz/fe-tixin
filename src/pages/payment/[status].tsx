@@ -3,7 +3,7 @@ import Payment from "@/components/views/Payment";
 
 const PaymentPage = () => {
   return (
-    <AuthLayout title="Tixin | Payment Account">
+    <AuthLayout title="Payment Account">
       <Payment />
     </AuthLayout>
   );
