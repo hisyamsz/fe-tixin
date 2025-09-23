@@ -54,7 +54,7 @@ const Transaction: FC<TransactionProps> = ({}) => {
           return (
             <DropdownAction
               onPressButtonDetail={() =>
-                push(`/member/transaction/${transaction.orderId}`)
+                push(`/admin/transaction/${transaction.orderId}`)
               }
               onPressButtonDelete={() => {
                 setSelectedId(`${transaction.orderId}`);
