@@ -5,8 +5,6 @@ import { convertIDR } from "@/utils/currency";
 import { QRCodeSVG } from "qrcode.react";
 import { convertTime } from "@/utils/date";
 import Link from "next/link";
-import Script from "next/script";
-import environment from "@/config/environment";
 import { cn } from "@/utils/cn";
 
 interface DetailTransactionProps {}

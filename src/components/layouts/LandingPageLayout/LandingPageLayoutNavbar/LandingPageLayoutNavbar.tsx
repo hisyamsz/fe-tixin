@@ -145,7 +145,7 @@ const LandingPageLayoutNavbar: FC<LandingPageLayoutNavbarProps> = ({}) => {
               <DropdownMenu aria-label="Profile Actions" variant="flat">
                 <DropdownItem
                   key="admin"
-                  href="/admin/dashboard"
+                  href="/admin/event"
                   className={cn({ hidden: dataProfile?.role !== "admin" })}
                 >
                   Admin
@@ -205,7 +205,7 @@ const LandingPageLayoutNavbar: FC<LandingPageLayoutNavbarProps> = ({}) => {
                 })}
               >
                 <Link
-                  href="/admin/dashboard"
+                  href="/admin/event"
                   className="font-medium text-default-700 hover:text-primary"
                 >
                   Admin
